@@ -1,30 +1,28 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import com.android.build.gradle.api.AndroidBasePlugin
 
-buildscript {
-    ext.kotlin_version = '2.2.20'
-    repositories {
-        google()
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.13.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-// TODO: Close JCenter on May 1st https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/
-//        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
-//        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-    }
+plugins {
+    id 'com.android.application' version '8.13.0' apply false
+    id 'com.android.library' version '8.13.0' apply false
+    id 'org.jetbrains.kotlin.android' version '2.2.20' apply false
 }
 
 allprojects {
-    repositories {
-        google()
-        mavenCentral()
-        jcenter()
+    plugins.withType(AndroidBasePlugin).configureEach {
+        android {
+            compileSdk 36
+            defaultConfig {
+                minSdk 21
+                targetSdk compileSdk
+                vectorDrawables.useSupportLibrary = true
+            }
+            lint {
+                abortOnError true
+                checkReleaseBuilds false
+            }
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+        }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
 }

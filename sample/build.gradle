@@ -1,28 +1,20 @@
-apply plugin: 'com.android.application'
-//apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
 
 android {
-    compileSdk COMPILE_SDK_VERSION as int
     namespace "jp.co.cyberagent.android.gpuimage.sample"
     defaultConfig {
-        minSdkVersion MIN_SDK_VERSION as int
-        targetSdkVersion TARGET_SDK_VERSION as int
-
-        versionCode = VERSION_CODE as int
-        versionName = VERSION_NAME
+        versionCode = 1
+        versionName = '1.0.0'
     }
-
     buildTypes {
-        debug {
-            debuggable true
-        }
         release {
-            debuggable false
-            zipAlignEnabled true
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
     buildFeatures {
@@ -36,12 +28,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
-repositories {
-//     maven { url = "https://oss.sonatype.org/content/repositories/snapshots"}
-}
 
 dependencies {
-    implementation project(':library')
     implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':library')
 }
