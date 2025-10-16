@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    package="jp.co.cyberagent.android.gpuimage.sample">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name="jp.co.cyberagent.android.gpuimage.sample.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:label="@string/title_activity_activity_main"
             android:exported="true">
             <intent-filter>
@@ -31,9 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="jp.co.cyberagent.android.gpuimage.sample.activity.GalleryActivity" />
+        <activity android:name=".activity.GalleryActivity" />
         <activity
-            android:name="jp.co.cyberagent.android.gpuimage.sample.activity.CameraActivity"
+            android:name=".activity.CameraActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
