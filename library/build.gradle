@@ -4,10 +4,13 @@ plugins {
 }
 
 android {
-    namespace "jp.co.cyberagent.gpuimage"
+    namespace "jp.co.cyberagent.android.gpuimage"
     defaultConfig {
         externalNativeBuild {
-            cmake { cppFlags "" }
+            cmake {
+                // 16 KB page sizes
+                arguments '-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON'
+            }
         }
     }
     externalNativeBuild {

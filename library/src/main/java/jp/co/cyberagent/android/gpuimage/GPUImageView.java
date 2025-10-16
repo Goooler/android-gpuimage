@@ -43,7 +43,6 @@ import java.util.concurrent.Semaphore;
 
 import jp.co.cyberagent.android.gpuimage.filter.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.util.Rotation;
-import jp.co.cyberagent.gpuimage.R;
 
 import static jp.co.cyberagent.android.gpuimage.GPUImage.SURFACE_TYPE_SURFACE_VIEW;
 import static jp.co.cyberagent.android.gpuimage.GPUImage.SURFACE_TYPE_TEXTURE_VIEW;
