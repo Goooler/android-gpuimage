@@ -12,4 +12,7 @@ android {
     externalNativeBuild {
         cmake { path "src/main/cpp/CMakeLists.txt" }
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
 }
