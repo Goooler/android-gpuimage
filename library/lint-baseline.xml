@@ -8,7 +8,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="498"
+            line="494"
             column="19"/>
     </issue>
 
@@ -19,7 +19,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="556"
+            line="543"
             column="19"/>
     </issue>
 
@@ -30,7 +30,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="599"
+            line="586"
             column="19"/>
     </issue>
 
@@ -41,7 +41,7 @@
         errorLine2="                           ~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="632"
+            line="617"
             column="28"/>
     </issue>
 
@@ -52,7 +52,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="515"
+            line="494"
             column="19"/>
     </issue>
 
