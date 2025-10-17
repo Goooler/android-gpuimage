@@ -2,17 +2,6 @@
 <issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="all" version="8.13.0">
 
     <issue
-        id="WrongCommentType"
-        message="This block comment looks like it was intended to be a javadoc comment"
-        errorLine1="         * @return true if the right to use an EGL context was acquired."
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GLTextureView.java"
-            line="1712"
-            column="12"/>
-    </issue>
-
-    <issue
         id="WrongThread"
         message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
         errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
