@@ -7,7 +7,7 @@ import android.opengl.GLES20;
  */
 public class GPUImageColorBalanceFilter extends GPUImageFilter {
 
-    public static final String GPU_IMAGE_COLOR_BALANCE_FRAGMENT_SHADER = "" +
+    public static final String GPU_IMAGE_COLOR_BALANCE_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "uniform sampler2D inputImageTexture;\n" +
             "uniform lowp vec3 shadowsShift;\n" +

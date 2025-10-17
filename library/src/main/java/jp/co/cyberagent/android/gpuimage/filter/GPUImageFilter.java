@@ -28,7 +28,7 @@ import java.util.LinkedList;
 import jp.co.cyberagent.android.gpuimage.util.OpenGlUtils;
 
 public class GPUImageFilter {
-    public static final String NO_FILTER_VERTEX_SHADER = "" +
+    public static final String NO_FILTER_VERTEX_SHADER =
             "attribute vec4 position;\n" +
             "attribute vec4 inputTextureCoordinate;\n" +
             " \n" +
@@ -39,7 +39,7 @@ public class GPUImageFilter {
             "    gl_Position = position;\n" +
             "    textureCoordinate = inputTextureCoordinate.xy;\n" +
             "}";
-    public static final String NO_FILTER_FRAGMENT_SHADER = "" +
+    public static final String NO_FILTER_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             " \n" +
             "uniform sampler2D inputImageTexture;\n" +
@@ -70,7 +70,7 @@ public class GPUImageFilter {
         this.fragmentShader = fragmentShader;
     }
 
-    private final void init() {
+    private void init() {
         onInit();
         onInitialized();
     }
@@ -171,97 +171,68 @@ public class GPUImageFilter {
     }
 
     protected void setInteger(final int location, final int intValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform1i(location, intValue);
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform1i(location, intValue);
         });
     }
 
     protected void setFloat(final int location, final float floatValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform1f(location, floatValue);
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform1f(location, floatValue);
         });
     }
 
     protected void setFloatVec2(final int location, final float[] arrayValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform2fv(location, 1, FloatBuffer.wrap(arrayValue));
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform2fv(location, 1, FloatBuffer.wrap(arrayValue));
         });
     }
 
     protected void setFloatVec3(final int location, final float[] arrayValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform3fv(location, 1, FloatBuffer.wrap(arrayValue));
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform3fv(location, 1, FloatBuffer.wrap(arrayValue));
         });
     }
 
     protected void setFloatVec4(final int location, final float[] arrayValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform4fv(location, 1, FloatBuffer.wrap(arrayValue));
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform4fv(location, 1, FloatBuffer.wrap(arrayValue));
         });
     }
 
     protected void setFloatArray(final int location, final float[] arrayValue) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniform1fv(location, arrayValue.length, FloatBuffer.wrap(arrayValue));
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniform1fv(location, arrayValue.length, FloatBuffer.wrap(arrayValue));
         });
     }
 
     protected void setPoint(final int location, final PointF point) {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                ifNeedInit();
-                float[] vec2 = new float[2];
-                vec2[0] = point.x;
-                vec2[1] = point.y;
-                GLES20.glUniform2fv(location, 1, vec2, 0);
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            float[] vec2 = new float[2];
+            vec2[0] = point.x;
+            vec2[1] = point.y;
+            GLES20.glUniform2fv(location, 1, vec2, 0);
         });
     }
 
     protected void setUniformMatrix3f(final int location, final float[] matrix) {
-        runOnDraw(new Runnable() {
-
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniformMatrix3fv(location, 1, false, matrix, 0);
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniformMatrix3fv(location, 1, false, matrix, 0);
         });
     }
 
     protected void setUniformMatrix4f(final int location, final float[] matrix) {
-        runOnDraw(new Runnable() {
-
-            @Override
-            public void run() {
-                ifNeedInit();
-                GLES20.glUniformMatrix4fv(location, 1, false, matrix, 0);
-            }
+        runOnDraw(() -> {
+            ifNeedInit();
+            GLES20.glUniformMatrix4fv(location, 1, false, matrix, 0);
         });
     }
 

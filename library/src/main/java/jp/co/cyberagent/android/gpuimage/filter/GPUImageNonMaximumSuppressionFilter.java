@@ -17,7 +17,7 @@
 package jp.co.cyberagent.android.gpuimage.filter;
 
 public class GPUImageNonMaximumSuppressionFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String NMS_FRAGMENT_SHADER = "" +
+    public static final String NMS_FRAGMENT_SHADER =
             "uniform sampler2D inputImageTexture;\n" +
             "\n" +
             "varying highp vec2 textureCoordinate;\n" +

@@ -3,7 +3,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
 import android.opengl.GLES20;
 
 public class GPUImageHalftoneFilter extends GPUImageFilter {
-    public static final String HALFTONE_FRAGMENT_SHADER = "" +
+    public static final String HALFTONE_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
 
             "uniform sampler2D inputImageTexture;\n" +

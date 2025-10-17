@@ -20,7 +20,7 @@ import android.opengl.GLES20;
 
 public class GPUImageLuminanceThresholdFilter extends GPUImageFilter {
 
-    public static final String LUMINANCE_THRESHOLD_FRAGMENT_SHADER = "" +
+    public static final String LUMINANCE_THRESHOLD_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

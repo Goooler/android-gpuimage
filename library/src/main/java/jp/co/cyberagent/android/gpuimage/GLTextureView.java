@@ -683,7 +683,7 @@ public class GLTextureView extends TextureView
     }
 
     private class DefaultContextFactory implements EGLContextFactory {
-        private int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
+        private static final int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
 
         public EGLContext createContext(EGL10 egl, EGLDisplay display, EGLConfig config) {
             int[] attrib_list = {
@@ -796,7 +796,7 @@ public class GLTextureView extends TextureView
 
         abstract EGLConfig chooseConfig(EGL10 egl, EGLDisplay display, EGLConfig[] configs);
 
-        protected int[] mConfigSpec;
+        protected final int[] mConfigSpec;
 
         private int[] filterConfigSpec(int[] configSpec) {
             if (eglContextClientVersion != 2) {
@@ -863,14 +863,14 @@ public class GLTextureView extends TextureView
             return defaultValue;
         }
 
-        private int[] value;
+        private final int[] value;
         // Subclasses can adjust these values:
-        protected int redSize;
-        protected int greenSize;
-        protected int blueSize;
-        protected int alphaSize;
-        protected int depthSize;
-        protected int stencilSize;
+        protected final int redSize;
+        protected final int greenSize;
+        protected final int blueSize;
+        protected final int alphaSize;
+        protected final int depthSize;
+        protected final int stencilSize;
     }
 
     /**
@@ -1105,7 +1105,7 @@ public class GLTextureView extends TextureView
             return function + " failed: " + error;
         }
 
-        private WeakReference<GLTextureView> glTextureViewWeakRef;
+        private final WeakReference<GLTextureView> glTextureViewWeakRef;
         EGL10 egl;
         EGLDisplay eglDisplay;
         EGLSurface eglSurface;
@@ -1241,7 +1241,7 @@ public class GLTextureView extends TextureView
                             if (pausing && haveEglContext) {
                                 GLTextureView view = glTextureViewWeakRef.get();
                                 boolean preserveEglContextOnPause =
-                                        view == null ? false : view.preserveEGLContextOnPause;
+                                        view != null && view.preserveEGLContextOnPause;
                                 if (!preserveEglContextOnPause
                                         || glThreadManager.shouldReleaseEGLContextWhenPausing()) {
                                     stopEglContextLocked();
@@ -1635,7 +1635,7 @@ public class GLTextureView extends TextureView
         private int renderMode;
         private boolean requestRender;
         private boolean renderComplete;
-        private ArrayList<Runnable> eventQueue = new ArrayList<>();
+        private final ArrayList<Runnable> eventQueue = new ArrayList<>();
         private boolean sizeChanged = true;
 
         // End of member variables protected by the glThreadManager monitor.
@@ -1647,7 +1647,7 @@ public class GLTextureView extends TextureView
          * called. This weak reference allows the GLTextureView to be garbage collected while
          * the GLThread is still alive.
          */
-        private WeakReference<GLTextureView> glTextureViewWeakRef;
+        private final WeakReference<GLTextureView> glTextureViewWeakRef;
     }
 
     static class LogWriter extends Writer {
@@ -1681,7 +1681,7 @@ public class GLTextureView extends TextureView
             }
         }
 
-        private StringBuilder builder = new StringBuilder();
+        private final StringBuilder builder = new StringBuilder();
     }
 
     private void checkRenderThreadState() {
@@ -1691,7 +1691,7 @@ public class GLTextureView extends TextureView
     }
 
     private static class GLThreadManager {
-        private static String TAG = "GLThreadManager";
+        private static final String TAG = "GLThreadManager";
 
         public synchronized void threadExiting(GLThread thread) {
             if (LOG_THREADS) {
@@ -1704,7 +1704,7 @@ public class GLTextureView extends TextureView
             notifyAll();
         }
 
-        /*
+        /**
          * Tries once to acquire the right to use an EGL
          * context. Does not block. Requires that we are already
          * in the glThreadManager monitor when this is called.
@@ -1805,5 +1805,5 @@ public class GLTextureView extends TextureView
     private int debugFlags;
     private int eglContextClientVersion;
     private boolean preserveEGLContextOnPause;
-    private List<SurfaceTextureListener> surfaceTextureListeners = new ArrayList<>();
+    private final List<SurfaceTextureListener> surfaceTextureListeners = new ArrayList<>();
 }

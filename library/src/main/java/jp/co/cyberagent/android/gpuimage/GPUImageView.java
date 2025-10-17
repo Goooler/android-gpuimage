@@ -16,6 +16,7 @@
 
 package jp.co.cyberagent.android.gpuimage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -25,7 +26,6 @@ import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
@@ -319,7 +319,6 @@ public class GPUImageView extends FrameLayout {
      * @param width  requested Bitmap width
      * @param height requested Bitmap height
      * @return Bitmap of picture with given size
-     * @throws InterruptedException
      */
     public Bitmap capture(final int width, final int height) throws InterruptedException {
         // This method needs to run on a background thread because it will take a longer time
@@ -335,57 +334,37 @@ public class GPUImageView extends FrameLayout {
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                    getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                } else {
-                    getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                }
+                getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 waiter.release();
             }
         });
 
-        post(new Runnable() {
-            @Override
-            public void run() {
-                // Optionally, show loading view:
-                if (isShowLoading) {
-                    addView(new LoadingView(getContext()));
-                }
-                // Request layout to release waiter:
-                surfaceView.requestLayout();
+        post(() -> {
+            // Optionally, show loading view:
+            if (isShowLoading) {
+                addView(new LoadingView(getContext()));
             }
+            // Request layout to release waiter:
+            surfaceView.requestLayout();
         });
 
         waiter.acquire();
 
         // Run one render pass
-        gpuImage.runOnGLThread(new Runnable() {
-            @Override
-            public void run() {
-                waiter.release();
-            }
-        });
+        gpuImage.runOnGLThread(waiter::release);
         requestRender();
         waiter.acquire();
         Bitmap bitmap = capture();
 
 
         forceSize = null;
-        post(new Runnable() {
-            @Override
-            public void run() {
-                surfaceView.requestLayout();
-            }
-        });
+        post(() -> surfaceView.requestLayout());
         requestRender();
 
         if (isShowLoading) {
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // Remove loading view
-                    removeViewAt(1);
-                }
+            postDelayed(() -> {
+                // Remove loading view
+                removeViewAt(1);
             }, 300);
         }
 
@@ -396,7 +375,6 @@ public class GPUImageView extends FrameLayout {
      * Capture the current image with the size as it is displayed and retrieve it as Bitmap.
      *
      * @return current output as Bitmap
-     * @throws InterruptedException
      */
     public Bitmap capture() throws InterruptedException {
         final Semaphore waiter = new Semaphore(0);
@@ -406,12 +384,9 @@ public class GPUImageView extends FrameLayout {
 
         // Take picture on OpenGL thread
         final Bitmap resultBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        gpuImage.runOnGLThread(new Runnable() {
-            @Override
-            public void run() {
-                GPUImageNativeLibrary.adjustBitmap(resultBitmap);
-                waiter.release();
-            }
+        gpuImage.runOnGLThread(() -> {
+            GPUImageNativeLibrary.adjustBitmap(resultBitmap);
+            waiter.release();
         });
         requestRender();
         waiter.acquire();
@@ -442,8 +417,8 @@ public class GPUImageView extends FrameLayout {
     }
 
     public static class Size {
-        int width;
-        int height;
+        final int width;
+        final int height;
 
         public Size(int width, int height) {
             this.width = width;
@@ -491,7 +466,7 @@ public class GPUImageView extends FrameLayout {
         }
     }
 
-    private class LoadingView extends FrameLayout {
+    private static class LoadingView extends FrameLayout {
         public LoadingView(Context context) {
             super(context);
             init();
@@ -542,6 +517,7 @@ public class GPUImageView extends FrameLayout {
         @Override
         protected Void doInBackground(final Void... params) {
             try {
+                @SuppressLint("WrongThread") // Switch thread in capture.
                 Bitmap result = width != 0 ? capture(width, height) : capture();
                 saveImage(folderName, fileName, result);
             } catch (InterruptedException e) {
@@ -560,18 +536,9 @@ public class GPUImageView extends FrameLayout {
                         new String[]{
                                 file.toString()
                         }, null,
-                        new MediaScannerConnection.OnScanCompletedListener() {
-                            @Override
-                            public void onScanCompleted(final String path, final Uri uri) {
-                                if (listener != null) {
-                                    handler.post(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            listener.onPictureSaved(uri);
-                                        }
-                                    });
-                                }
+                        (path1, uri) -> {
+                            if (listener != null) {
+                                handler.post(() -> listener.onPictureSaved(uri));
                             }
                         });
             } catch (FileNotFoundException e) {

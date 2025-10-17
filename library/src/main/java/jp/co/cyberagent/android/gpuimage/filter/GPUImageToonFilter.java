@@ -23,7 +23,7 @@ import android.opengl.GLES20;
  * and then it quantizes the colors present in the image to give a cartoon-like quality to the image.
  */
 public class GPUImageToonFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String TOON_FRAGMENT_SHADER = "" +
+    public static final String TOON_FRAGMENT_SHADER =
             "precision highp float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

@@ -19,7 +19,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
 import android.opengl.GLES20;
 
 public class GPUImageFalseColorFilter extends GPUImageFilter {
-    public static final String FALSECOLOR_FRAGMENT_SHADER = "" +
+    public static final String FALSECOLOR_FRAGMENT_SHADER =
             "precision lowp float;\n" +
             "\n" +
             "varying highp vec2 textureCoordinate;\n" +

@@ -19,7 +19,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
 import android.opengl.GLES20;
 
 public class GPUImageLaplacianFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String LAPLACIAN_FRAGMENT_SHADER = "" +
+    public static final String LAPLACIAN_FRAGMENT_SHADER =
             "precision highp float;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

@@ -25,12 +25,11 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import jp.co.cyberagent.android.gpuimage.util.OpenGlUtils;
 
 public class GPUImageToneCurveFilter extends GPUImageFilter {
-    public static final String TONE_CURVE_FRAGMENT_SHADER = "" +
+    public static final String TONE_CURVE_FRAGMENT_SHADER =
             " varying highp vec2 textureCoordinate;\n" +
             " uniform sampler2D inputImageTexture;\n" +
             " uniform sampler2D toneCurveTexture;\n" +
@@ -45,7 +44,7 @@ public class GPUImageToneCurveFilter extends GPUImageFilter {
             "     gl_FragColor = vec4(redCurveValue, greenCurveValue, blueCurveValue, textureColor.a);\n" +
             " }";
 
-    private int[] toneCurveTexture = new int[]{OpenGlUtils.NO_TEXTURE};
+    private final int[] toneCurveTexture = new int[]{OpenGlUtils.NO_TEXTURE};
     private int toneCurveTextureUniformLocation;
 
     private PointF[] rgbCompositeControlPoints;
@@ -167,24 +166,22 @@ public class GPUImageToneCurveFilter extends GPUImageFilter {
     }
 
     private void updateToneCurveTexture() {
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                GLES20.glActiveTexture(GLES20.GL_TEXTURE3);
-                GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, toneCurveTexture[0]);
+        runOnDraw(() -> {
+            GLES20.glActiveTexture(GLES20.GL_TEXTURE3);
+            GLES20.glBindTexture(GLES20.GL_TEXTURE_2D, toneCurveTexture[0]);
 
-                if ((redCurve.size() >= 256) && (greenCurve.size() >= 256) && (blueCurve.size() >= 256) && (rgbCompositeCurve.size() >= 256)) {
-                    byte[] toneCurveByteArray = new byte[256 * 4];
-                    for (int currentCurveIndex = 0; currentCurveIndex < 256; currentCurveIndex++) {
-                        // BGRA for upload to texture
-                        toneCurveByteArray[currentCurveIndex * 4 + 2] = (byte) ((int) Math.min(Math.max(currentCurveIndex + blueCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
-                        toneCurveByteArray[currentCurveIndex * 4 + 1] = (byte) ((int) Math.min(Math.max(currentCurveIndex + greenCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
-                        toneCurveByteArray[currentCurveIndex * 4] = (byte) ((int) Math.min(Math.max(currentCurveIndex + redCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
-                        toneCurveByteArray[currentCurveIndex * 4 + 3] = (byte) (0xff);
-                    }
-
-                    GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, 256 /*width*/, 1 /*height*/, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, ByteBuffer.wrap(toneCurveByteArray));
+            if ((redCurve.size() >= 256) && (greenCurve.size() >= 256) && (blueCurve.size() >= 256) && (rgbCompositeCurve.size() >= 256)) {
+                byte[] toneCurveByteArray = new byte[256 * 4];
+                for (int currentCurveIndex = 0; currentCurveIndex < 256; currentCurveIndex++) {
+                    // BGRA for upload to texture
+                    toneCurveByteArray[currentCurveIndex * 4 + 2] = (byte) ((int) Math.min(Math.max(currentCurveIndex + blueCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
+                    toneCurveByteArray[currentCurveIndex * 4 + 1] = (byte) ((int) Math.min(Math.max(currentCurveIndex + greenCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
+                    toneCurveByteArray[currentCurveIndex * 4] = (byte) ((int) Math.min(Math.max(currentCurveIndex + redCurve.get(currentCurveIndex) + rgbCompositeCurve.get(currentCurveIndex), 0), 255) & 0xff);
+                    toneCurveByteArray[currentCurveIndex * 4 + 3] = (byte) (0xff);
                 }
+
+                GLES20.glTexImage2D(GLES20.GL_TEXTURE_2D, 0, GLES20.GL_RGBA, 256 /*width*/, 1 /*height*/, 0, GLES20.GL_RGBA, GLES20.GL_UNSIGNED_BYTE, ByteBuffer.wrap(toneCurveByteArray));
+            }
 //        Buffer pixels!
 //        GLES20.glTexImage2D(int target,
 //            int level,
@@ -195,29 +192,17 @@ public class GPUImageToneCurveFilter extends GPUImageFilter {
 //            int format,
 //            int type,
 //            java.nio.Buffer pixels);
-            }
         });
     }
 
     private ArrayList<Float> createSplineCurve(PointF[] points) {
-        if (points == null || points.length <= 0) {
+        if (points == null || points.length == 0) {
             return null;
         }
 
         // Sort the array
         PointF[] pointsSorted = points.clone();
-        Arrays.sort(pointsSorted, new Comparator<PointF>() {
-            @Override
-            public int compare(PointF point1, PointF point2) {
-                if (point1.x < point2.x) {
-                    return -1;
-                } else if (point1.x > point2.x) {
-                    return 1;
-                } else {
-                    return 0;
-                }
-            }
-        });
+        Arrays.sort(pointsSorted, (point1, point2) -> Float.compare(point1.x, point2.x));
 
         // Convert from (0, 1) to (0, 255).
         Point[] convertedPoints = new Point[pointsSorted.length];
@@ -271,7 +256,7 @@ public class GPUImageToneCurveFilter extends GPUImageFilter {
         if (n < 1) {
             return null;
         }
-        double sd[] = new double[n];
+        double[] sd = new double[n];
 
         // From NSMutableArray to sd[n];
         for (int i = 0; i < n; i++) {
@@ -317,8 +302,8 @@ public class GPUImageToneCurveFilter extends GPUImageFilter {
             return null;
         }
 
-        double matrix[][] = new double[n][3];
-        double result[] = new double[n];
+        double[][] matrix = new double[n][3];
+        double[] result = new double[n];
         matrix[0][1] = 1;
         // What about matrix[0][1] and matrix[0][0]? Assuming 0 for now (Brad L.)
         matrix[0][0] = 0;

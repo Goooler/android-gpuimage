@@ -17,7 +17,7 @@
 package jp.co.cyberagent.android.gpuimage.filter;
 
 public class GPUImageWeakPixelInclusionFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String WEAKPIXEL_FRAGMENT_SHADER = "" +
+    public static final String WEAKPIXEL_FRAGMENT_SHADER =
             "precision lowp float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

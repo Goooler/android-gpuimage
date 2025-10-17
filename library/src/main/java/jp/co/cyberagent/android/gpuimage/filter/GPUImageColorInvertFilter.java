@@ -20,7 +20,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
  * Invert all the colors in the image.
  */
 public class GPUImageColorInvertFilter extends GPUImageFilter {
-    public static final String COLOR_INVERT_FRAGMENT_SHADER = "" +
+    public static final String COLOR_INVERT_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

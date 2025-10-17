@@ -23,7 +23,7 @@ import android.opengl.GLES20;
  * lineWidth: A relative width for the crosshatch lines. The default is 0.003.
  */
 public class GPUImageCrosshatchFilter extends GPUImageFilter {
-    public static final String CROSSHATCH_FRAGMENT_SHADER = "" +
+    public static final String CROSSHATCH_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "uniform sampler2D inputImageTexture;\n" +
             "uniform highp float crossHatchSpacing;\n" +
@@ -109,11 +109,7 @@ public class GPUImageCrosshatchFilter extends GPUImageFilter {
             singlePixelSpacing = 1.0f / 2048.0f;
         }
 
-        if (crossHatchSpacing < singlePixelSpacing) {
-            this.crossHatchSpacing = singlePixelSpacing;
-        } else {
-            this.crossHatchSpacing = crossHatchSpacing;
-        }
+        this.crossHatchSpacing = Math.max(crossHatchSpacing, singlePixelSpacing);
 
         setFloat(crossHatchSpacingLocation, this.crossHatchSpacing);
     }

@@ -18,7 +18,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
 
 public class GPUImageLuminanceFilter extends GPUImageFilter {
 
-    public static final String LUMINANCE_FRAGMENT_SHADER = "" +
+    public static final String LUMINANCE_FRAGMENT_SHADER =
             "precision highp float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

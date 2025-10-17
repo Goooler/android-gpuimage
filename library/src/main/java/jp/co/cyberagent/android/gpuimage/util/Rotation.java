@@ -48,6 +48,7 @@ public enum Rotation {
     public static Rotation fromInt(int rotation) {
         switch (rotation) {
             case 0:
+            case 360:
                 return NORMAL;
             case 90:
                 return ROTATION_90;
@@ -55,11 +56,9 @@ public enum Rotation {
                 return ROTATION_180;
             case 270:
                 return ROTATION_270;
-            case 360:
-                return NORMAL;
             default:
                 throw new IllegalStateException(
-                        rotation + " is an unknown rotation. Needs to be either 0, 90, 180 or 270!");
+                        rotation + " is an unknown rotation. Needs to be either 0, 90, 180, 270 or 360!");
         }
     }
 }

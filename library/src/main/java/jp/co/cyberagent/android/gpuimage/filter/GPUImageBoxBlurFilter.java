@@ -94,17 +94,10 @@ public class GPUImageBoxBlurFilter extends GPUImageTwoPassTextureSamplingFilter 
 
     /**
      * A scaling for the size of the applied blur, default of 1.0
-     *
-     * @param blurSize
      */
     public void setBlurSize(float blurSize) {
         this.blurSize = blurSize;
-        runOnDraw(new Runnable() {
-            @Override
-            public void run() {
-                initTexelOffsets();
-            }
-        });
+        runOnDraw(this::initTexelOffsets);
     }
 
     @Override

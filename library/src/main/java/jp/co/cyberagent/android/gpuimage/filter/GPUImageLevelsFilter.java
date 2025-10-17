@@ -28,15 +28,15 @@ public class GPUImageLevelsFilter extends GPUImageFilter {
                     " }\n";
 
     private int minLocation;
-    private float[] min;
+    private final float[] min;
     private int midLocation;
-    private float[] mid;
+    private final float[] mid;
     private int maxLocation;
-    private float[] max;
+    private final float[] max;
     private int minOutputLocation;
-    private float[] minOutput;
+    private final float[] minOutput;
     private int maxOutputLocation;
-    private float[] maxOutput;
+    private final float[] maxOutput;
 
     public GPUImageLevelsFilter() {
         this(new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f}, new float[]{1.0f, 1.0f, 1.0f}, new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});

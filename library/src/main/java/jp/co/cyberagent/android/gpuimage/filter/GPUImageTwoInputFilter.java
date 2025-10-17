@@ -82,15 +82,13 @@ public class GPUImageTwoInputFilter extends GPUImageFilter {
         if (this.bitmap == null) {
             return;
         }
-        runOnDraw(new Runnable() {
-            public void run() {
-                if (filterSourceTexture2 == OpenGlUtils.NO_TEXTURE) {
-                    if (bitmap == null || bitmap.isRecycled()) {
-                        return;
-                    }
-                    GLES20.glActiveTexture(GLES20.GL_TEXTURE3);
-                    filterSourceTexture2 = OpenGlUtils.loadTexture(bitmap, OpenGlUtils.NO_TEXTURE, false);
+        runOnDraw(() -> {
+            if (filterSourceTexture2 == OpenGlUtils.NO_TEXTURE) {
+                if (bitmap == null || bitmap.isRecycled()) {
+                    return;
                 }
+                GLES20.glActiveTexture(GLES20.GL_TEXTURE3);
+                filterSourceTexture2 = OpenGlUtils.loadTexture(bitmap, OpenGlUtils.NO_TEXTURE, false);
             }
         });
     }

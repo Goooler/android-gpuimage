@@ -21,7 +21,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
  * This is just the Sobel edge detection filter with the colors inverted.
  */
 public class GPUImageSketchFilter extends GPUImageFilterGroup {
-    public static final String SKETCH_FRAGMENT_SHADER = "" +
+    public static final String SKETCH_FRAGMENT_SHADER =
             "precision mediump float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

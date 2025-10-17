@@ -20,3 +20,7 @@ android {
         baseline = file("lint-baseline.xml")
     }
 }
+
+dependencies {
+    implementation "androidx.exifinterface:exifinterface:1.4.1"
+}

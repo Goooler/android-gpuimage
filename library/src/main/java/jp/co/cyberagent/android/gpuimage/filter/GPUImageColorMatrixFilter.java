@@ -22,7 +22,7 @@ import android.opengl.GLES20;
  * Applies a ColorMatrix to the image.
  */
 public class GPUImageColorMatrixFilter extends GPUImageFilter {
-    public static final String COLOR_MATRIX_FRAGMENT_SHADER = "" +
+    public static final String COLOR_MATRIX_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

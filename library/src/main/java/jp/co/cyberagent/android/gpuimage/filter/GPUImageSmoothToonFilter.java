@@ -22,8 +22,8 @@ package jp.co.cyberagent.android.gpuimage.filter;
  */
 public class GPUImageSmoothToonFilter extends GPUImageFilterGroup {
 
-    private GPUImageGaussianBlurFilter blurFilter;
-    private GPUImageToonFilter toonFilter;
+    private final GPUImageGaussianBlurFilter blurFilter;
+    private final GPUImageToonFilter toonFilter;
 
     /**
      * Setup and Tear down

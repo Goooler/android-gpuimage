@@ -22,7 +22,7 @@ import android.opengl.GLES20;
  * Runs a 3x3 convolution kernel against the image
  */
 public class GPUImage3x3ConvolutionFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String THREE_X_THREE_TEXTURE_SAMPLING_FRAGMENT_SHADER = "" +
+    public static final String THREE_X_THREE_TEXTURE_SAMPLING_FRAGMENT_SHADER =
             "precision highp float;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

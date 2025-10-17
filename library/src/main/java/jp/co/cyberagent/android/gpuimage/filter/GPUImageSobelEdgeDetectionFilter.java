@@ -20,7 +20,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
  * Applies sobel edge detection on the image.
  */
 public class GPUImageSobelEdgeDetectionFilter extends GPUImageFilterGroup {
-    public static final String SOBEL_EDGE_DETECTION = "" +
+    public static final String SOBEL_EDGE_DETECTION =
             "precision mediump float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

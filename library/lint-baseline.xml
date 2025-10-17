@@ -2,68 +2,13 @@
 <issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="all" version="8.13.0">
 
     <issue
-        id="WrongCommentType"
-        message="This block comment looks like it was intended to be a javadoc comment"
-        errorLine1="         * @return true if the right to use an EGL context was acquired."
-        errorLine2="           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GLTextureView.java"
-            line="1712"
-            column="12"/>
-    </issue>
-
-    <issue
-        id="ExifInterface"
-        message="Avoid using `android.media.ExifInterface`; use `androidx.exifinterface.media.ExifInterface` instead"
-        errorLine1="import android.media.ExifInterface;"
-        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="29"
-            column="8"/>
-    </issue>
-
-    <issue
-        id="WrongThread"
-        message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
-        errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
-        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="546"
-            column="46"/>
-    </issue>
-
-    <issue
-        id="WrongThread"
-        message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
-        errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
-        errorLine2="                                                                      ~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="546"
-            column="71"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is never &lt; 21"
-        errorLine1="                if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.JELLY_BEAN) {"
-        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="339"
-            column="21"/>
-    </issue>
-
-    <issue
         id="StaticFieldLeak"
         message="This `AsyncTask` class should be static or leaks might occur (jp.co.cyberagent.android.gpuimage.GPUImage.SaveTask)"
         errorLine1="    private class SaveTask extends AsyncTask&lt;Void, Void, Void> {"
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="497"
+            line="494"
             column="19"/>
     </issue>
 
@@ -74,7 +19,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="555"
+            line="543"
             column="19"/>
     </issue>
 
@@ -85,7 +30,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="598"
+            line="586"
             column="19"/>
     </issue>
 
@@ -96,7 +41,7 @@
         errorLine2="                           ~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="631"
+            line="617"
             column="28"/>
     </issue>
 
@@ -107,7 +52,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="520"
+            line="494"
             column="19"/>
     </issue>
 
