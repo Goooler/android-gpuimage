@@ -25,7 +25,7 @@ import android.opengl.GLES20;
  * This might be best used for still images.
  */
 public class GPUImageKuwaharaFilter extends GPUImageFilter {
-    public static final String KUWAHARA_FRAGMENT_SHADER = "" +
+    public static final String KUWAHARA_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "uniform sampler2D inputImageTexture;\n" +
             "uniform int radius;\n" +

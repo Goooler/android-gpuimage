@@ -24,7 +24,7 @@ import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
 
 public class GPUImageTransformFilter extends GPUImageFilter {
-    public static final String TRANSFORM_VERTEX_SHADER = "" +
+    public static final String TRANSFORM_VERTEX_SHADER =
             "attribute vec4 position;\n" +
             " attribute vec4 inputTextureCoordinate;\n" +
             " \n" +
@@ -41,7 +41,7 @@ public class GPUImageTransformFilter extends GPUImageFilter {
 
     private int transformMatrixUniform;
     private int orthographicMatrixUniform;
-    private float[] orthographicMatrix;
+    private final float[] orthographicMatrix;
 
     private float[] transform3D;
 
@@ -80,7 +80,7 @@ public class GPUImageTransformFilter extends GPUImageFilter {
         super.onOutputSizeChanged(width, height);
 
         if (!ignoreAspectRatio) {
-            Matrix.orthoM(orthographicMatrix, 0, -1.0f, 1.0f, -1.0f * (float) height / (float) width, 1.0f * (float) height / (float) width, -1.0f, 1.0f);
+            Matrix.orthoM(orthographicMatrix, 0, -1.0f, 1.0f, -1.0f * (float) height / (float) width, (float) height / (float) width, -1.0f, 1.0f);
             setUniformMatrix4f(orthographicMatrixUniform, orthographicMatrix);
         }
     }

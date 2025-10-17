@@ -18,7 +18,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
 
 
 public class GPUImageDirectionalSobelEdgeDetectionFilter extends GPUImage3x3TextureSamplingFilter {
-    public static final String DIRECTIONAL_SOBEL_EDGE_DETECTION_FRAGMENT_SHADER = "" +
+    public static final String DIRECTIONAL_SOBEL_EDGE_DETECTION_FRAGMENT_SHADER =
             "precision mediump float;\n" +
             "\n" +
             "varying vec2 textureCoordinate;\n" +

@@ -22,7 +22,7 @@ import android.opengl.GLES20;
  * exposure: The adjusted exposure (-10.0 - 10.0, with 0.0 as the default)
  */
 public class GPUImageExposureFilter extends GPUImageFilter {
-    public static final String EXPOSURE_FRAGMENT_SHADER = "" +
+    public static final String EXPOSURE_FRAGMENT_SHADER =
             " varying highp vec2 textureCoordinate;\n" +
             " \n" +
             " uniform sampler2D inputImageTexture;\n" +

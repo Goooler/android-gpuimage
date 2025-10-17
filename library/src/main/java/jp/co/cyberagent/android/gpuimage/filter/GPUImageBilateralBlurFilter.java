@@ -9,7 +9,7 @@ import android.opengl.GLES20;
 
 
 public class GPUImageBilateralBlurFilter extends GPUImageFilter {
-    public static final String BILATERAL_VERTEX_SHADER = "" +
+    public static final String BILATERAL_VERTEX_SHADER =
             "attribute vec4 position;\n" +
             "attribute vec4 inputTextureCoordinate;\n" +
 
@@ -37,7 +37,7 @@ public class GPUImageBilateralBlurFilter extends GPUImageFilter {
             "	}\n" +
             "}";
 
-    public static final String BILATERAL_FRAGMENT_SHADER = "" +
+    public static final String BILATERAL_FRAGMENT_SHADER =
             "uniform sampler2D inputImageTexture;\n" +
 
             " const lowp int GAUSSIAN_SAMPLES = 9;\n" +

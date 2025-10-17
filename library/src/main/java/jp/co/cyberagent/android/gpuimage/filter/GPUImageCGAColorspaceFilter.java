@@ -17,7 +17,7 @@
 package jp.co.cyberagent.android.gpuimage.filter;
 
 public class GPUImageCGAColorspaceFilter extends GPUImageFilter {
-    public static final String CGACOLORSPACE_FRAGMENT_SHADER = "" +
+    public static final String CGACOLORSPACE_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

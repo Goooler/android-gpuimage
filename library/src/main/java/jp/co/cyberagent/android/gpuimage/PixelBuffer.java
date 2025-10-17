@@ -36,18 +36,19 @@ public class PixelBuffer {
     private final static boolean LIST_CONFIGS = false;
 
     private GLSurfaceView.Renderer renderer; // borrow this interface
-    private int width, height;
+    private final int width;
+    private final int height;
     private Bitmap bitmap;
 
-    private EGL10 egl10;
-    private EGLDisplay eglDisplay;
+    private final EGL10 egl10;
+    private final EGLDisplay eglDisplay;
     private EGLConfig[] eglConfigs;
-    private EGLConfig eglConfig;
-    private EGLContext eglContext;
-    private EGLSurface eglSurface;
-    private GL10 gl10;
+    private final EGLConfig eglConfig;
+    private final EGLContext eglContext;
+    private final EGLSurface eglSurface;
+    private final GL10 gl10;
 
-    private String mThreadOwner;
+    private final String mThreadOwner;
 
     public PixelBuffer(final int width, final int height) {
         this.width = width;
@@ -65,10 +66,7 @@ public class PixelBuffer {
         eglDisplay = egl10.eglGetDisplay(EGL_DEFAULT_DISPLAY);
         egl10.eglInitialize(eglDisplay, version);
         eglConfig = chooseConfig(); // Choosing a config is a little more
-        // complicated
 
-        // eglContext = egl10.eglCreateContext(eglDisplay, eglConfig,
-        // EGL_NO_CONTEXT, null);
         int EGL_CONTEXT_CLIENT_VERSION = 0x3098;
         int[] attrib_list = {
                 EGL_CONTEXT_CLIENT_VERSION, 2,

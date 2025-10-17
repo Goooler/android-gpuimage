@@ -24,7 +24,7 @@ import android.opengl.GLES20;
  * color: The color to use as the basis for the effect, with (0.6, 0.45, 0.3, 1.0) as the default.
  */
 public class GPUImageMonochromeFilter extends GPUImageFilter {
-    public static final String MONOCHROME_FRAGMENT_SHADER = "" +
+    public static final String MONOCHROME_FRAGMENT_SHADER =
             " precision lowp float;\n" +
             "  \n" +
             "  varying highp vec2 textureCoordinate;\n" +

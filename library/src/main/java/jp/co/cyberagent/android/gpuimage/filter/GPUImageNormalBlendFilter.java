@@ -25,7 +25,7 @@ package jp.co.cyberagent.android.gpuimage.filter;
  * Da = C1a + C2a * (1 - C1a)
  * The resultant color is premultiplied with the alpha. To restore the color to the unmultiplied values, just divide by Da, the resultant alpha.
  * <p>
- * http://stackoverflow.com/questions/1724946/blend-mode-on-a-transparent-and-semi-transparent-background
+ * <a href="http://stackoverflow.com/questions/1724946/blend-mode-on-a-transparent-and-semi-transparent-background">...</a>
  * <p>
  * For some reason Photoshop behaves
  * D = C1 + C2 * C2a * (1 - C1a)

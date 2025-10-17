@@ -4,7 +4,7 @@ import android.graphics.PointF;
 import android.opengl.GLES20;
 
 public class GPUImageZoomBlurFilter extends GPUImageFilter {
-    public static final String ZOOM_BLUR_FRAGMENT_SHADER = "" +
+    public static final String ZOOM_BLUR_FRAGMENT_SHADER =
             "varying highp vec2 textureCoordinate;\n" +
             "\n" +
             "uniform sampler2D inputImageTexture;\n" +

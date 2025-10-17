@@ -18,26 +18,26 @@ package jp.co.cyberagent.android.gpuimage.util;
 
 public class TextureRotationUtil {
 
-    public static final float TEXTURE_NO_ROTATION[] = {
+    public static final float[] TEXTURE_NO_ROTATION = {
             0.0f, 1.0f,
             1.0f, 1.0f,
             0.0f, 0.0f,
             1.0f, 0.0f,
     };
 
-    public static final float TEXTURE_ROTATED_90[] = {
+    public static final float[] TEXTURE_ROTATED_90 = {
             1.0f, 1.0f,
             1.0f, 0.0f,
             0.0f, 1.0f,
             0.0f, 0.0f,
     };
-    public static final float TEXTURE_ROTATED_180[] = {
+    public static final float[] TEXTURE_ROTATED_180 = {
             1.0f, 0.0f,
             0.0f, 0.0f,
             1.0f, 1.0f,
             0.0f, 1.0f,
     };
-    public static final float TEXTURE_ROTATED_270[] = {
+    public static final float[] TEXTURE_ROTATED_270 = {
             0.0f, 0.0f,
             0.0f, 1.0f,
             1.0f, 0.0f,

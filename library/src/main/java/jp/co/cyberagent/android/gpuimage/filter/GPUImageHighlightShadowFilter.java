@@ -24,7 +24,7 @@ import android.opengl.GLES20;
  * highlights: Decrease to darken highlights, from 0.0 to 1.0, with 1.0 as the default.
  */
 public class GPUImageHighlightShadowFilter extends GPUImageFilter {
-    public static final String HIGHLIGHT_SHADOW_FRAGMENT_SHADER = "" +
+    public static final String HIGHLIGHT_SHADOW_FRAGMENT_SHADER =
             " uniform sampler2D inputImageTexture;\n" +
             " varying highp vec2 textureCoordinate;\n" +
             "  \n" +

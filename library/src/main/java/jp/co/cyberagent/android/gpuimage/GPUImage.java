@@ -355,14 +355,10 @@ public class GPUImage {
     public Bitmap getBitmapWithFilterApplied(final Bitmap bitmap, boolean recycle) {
         if (glSurfaceView != null || glTextureView != null) {
             renderer.deleteImage();
-            renderer.runOnDraw(new Runnable() {
-
-                @Override
-                public void run() {
-                    synchronized (filter) {
-                        filter.destroy();
-                        filter.notify();
-                    }
+            renderer.runOnDraw(() -> {
+                synchronized (filter) {
+                    filter.destroy();
+                    filter.notify();
                 }
             });
             synchronized (filter) {
@@ -529,18 +525,9 @@ public class GPUImage {
                         new String[]{
                                 file.toString()
                         }, null,
-                        new MediaScannerConnection.OnScanCompletedListener() {
-                            @Override
-                            public void onScanCompleted(final String path, final Uri uri) {
-                                if (listener != null) {
-                                    handler.post(new Runnable() {
-
-                                        @Override
-                                        public void run() {
-                                            listener.onPictureSaved(uri);
-                                        }
-                                    });
-                                }
+                        (path1, uri) -> {
+                            if (listener != null) {
+                                handler.post(() -> listener.onPictureSaved(uri));
                             }
                         });
             } catch (FileNotFoundException e) {
@@ -581,7 +568,7 @@ public class GPUImage {
         }
 
         @Override
-        protected int getImageOrientation() throws IOException {
+        protected int getImageOrientation() {
             Cursor cursor = context.getContentResolver().query(uri,
                     new String[]{MediaStore.Images.ImageColumns.ORIENTATION}, null, null, null);
 
@@ -615,8 +602,6 @@ public class GPUImage {
             ExifInterface exif = new ExifInterface(imageFile.getAbsolutePath());
             int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
             switch (orientation) {
-                case ExifInterface.ORIENTATION_NORMAL:
-                    return 0;
                 case ExifInterface.ORIENTATION_ROTATE_90:
                     return 90;
                 case ExifInterface.ORIENTATION_ROTATE_180:
