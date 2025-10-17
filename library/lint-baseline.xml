@@ -2,28 +2,6 @@
 <issues format="6" by="lint 8.13.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.13.0)" variant="all" version="8.13.0">
 
     <issue
-        id="WrongThread"
-        message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
-        errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
-        errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="540"
-            column="46"/>
-    </issue>
-
-    <issue
-        id="WrongThread"
-        message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
-        errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
-        errorLine2="                                                                      ~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="540"
-            column="71"/>
-    </issue>
-
-    <issue
         id="StaticFieldLeak"
         message="This `AsyncTask` class should be static or leaks might occur (jp.co.cyberagent.android.gpuimage.GPUImage.SaveTask)"
         errorLine1="    private class SaveTask extends AsyncTask&lt;Void, Void, Void> {"
@@ -74,7 +52,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="514"
+            line="515"
             column="19"/>
     </issue>
 

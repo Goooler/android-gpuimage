@@ -16,6 +16,7 @@
 
 package jp.co.cyberagent.android.gpuimage;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -537,6 +538,7 @@ public class GPUImageView extends FrameLayout {
         @Override
         protected Void doInBackground(final Void... params) {
             try {
+                @SuppressLint("WrongThread") // Switch thread in capture.
                 Bitmap result = width != 0 ? capture(width, height) : capture();
                 saveImage(folderName, fileName, result);
             } catch (InterruptedException e) {
