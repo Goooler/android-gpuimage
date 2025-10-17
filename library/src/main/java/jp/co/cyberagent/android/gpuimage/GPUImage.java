@@ -26,7 +26,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.hardware.Camera;
-import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
@@ -36,6 +35,8 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.Display;
 import android.view.WindowManager;
+
+import androidx.exifinterface.media.ExifInterface;
 
 import java.io.File;
 import java.io.FileNotFoundException;

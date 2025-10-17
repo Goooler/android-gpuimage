@@ -13,17 +13,6 @@
     </issue>
 
     <issue
-        id="ExifInterface"
-        message="Avoid using `android.media.ExifInterface`; use `androidx.exifinterface.media.ExifInterface` instead"
-        errorLine1="import android.media.ExifInterface;"
-        errorLine2="       ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="29"
-            column="8"/>
-    </issue>
-
-    <issue
         id="WrongThread"
         message="Method capture must be called from the UI thread, currently inferred thread is worker thread"
         errorLine1="                Bitmap result = width != 0 ? capture(width, height) : capture();"
@@ -52,7 +41,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="497"
+            line="498"
             column="19"/>
     </issue>
 
@@ -63,7 +52,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="555"
+            line="556"
             column="19"/>
     </issue>
 
@@ -74,7 +63,7 @@
         errorLine2="                  ~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="598"
+            line="599"
             column="19"/>
     </issue>
 
@@ -85,7 +74,7 @@
         errorLine2="                           ~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImage.java"
-            line="631"
+            line="632"
             column="28"/>
     </issue>
 
