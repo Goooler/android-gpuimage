@@ -30,7 +30,7 @@
         errorLine2="                                             ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="546"
+            line="540"
             column="46"/>
     </issue>
 
@@ -41,19 +41,8 @@
         errorLine2="                                                                      ~~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="546"
+            line="540"
             column="71"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        message="Unnecessary; `SDK_INT` is never &lt; 21"
-        errorLine1="                if (Build.VERSION.SDK_INT &lt; Build.VERSION_CODES.JELLY_BEAN) {"
-        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="339"
-            column="21"/>
     </issue>
 
     <issue
@@ -107,7 +96,7 @@
         errorLine2="                  ~~~~~~~~">
         <location
             file="src/main/java/jp/co/cyberagent/android/gpuimage/GPUImageView.java"
-            line="520"
+            line="514"
             column="19"/>
     </issue>
 
