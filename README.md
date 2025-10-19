@@ -252,8 +252,8 @@ public override fun onCreate(savedInstanceState: Bundle?) {
 ### Gradle
 Make sure that you run the clean target when using maven.
 
-```groovy
-gradle clean assemble
+```sh
+./gradlew build
 ```
 
 ## License
