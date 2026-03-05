@@ -14,6 +14,7 @@ allprojects {
     plugins.withType(AndroidBasePlugin).configureEach {
         android {
             compileSdk 36
+            ndkVersion "29.0.14206865"
             defaultConfig {
                 minSdk 21
                 targetSdk compileSdk
