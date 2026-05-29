@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 2.2.1 *(2026-05-29)*
+----------------------------
+
+* Improve 16 KB page sizes support a bit.
+* Update dependencies.
+* Code cleanups.
+
 Version 2.2.0 *(2025-10-16)*
 ----------------------------
 
