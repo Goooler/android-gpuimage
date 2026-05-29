@@ -4,4 +4,12 @@
     'config:recommended',
   ],
   automerge: true,
+  packageRules: [
+    {
+      groupName: 'AGP',
+      matchPackageNames: [
+        '/com.android.*/',
+      ],
+    },
+  ]
 }
